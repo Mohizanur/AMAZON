@@ -1,5 +1,3 @@
-const { onRequest } = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -14,8 +12,15 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 const app = express();
 
 // Middleware
-app.use(cors({ origin: ["http://localhost:3000"] })); // Ensure CORS only allows your frontend
-app.use(express.json()); // Parse JSON body
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://amazon-clone-monasir-pw0zvg5g1-monasirs-projects.vercel.app",
+    ],
+  })
+);
+app.use(express.json());
 
 // Root route for testing
 app.get("/", (req, res) => {
@@ -25,9 +30,9 @@ app.get("/", (req, res) => {
 // Payment creation route
 app.post("/payment/create", async (req, res) => {
   try {
-    console.log("Request Body:", req.body); // Log incoming request body
+    console.log("Request Body:", req.body);
 
-    const { total } = req.body; // Read 'total' from request body
+    const { total } = req.body;
 
     if (!total || total <= 0) {
       return res.status(403).json({ message: "Total must be greater than 0" });
@@ -35,7 +40,7 @@ app.post("/payment/create", async (req, res) => {
 
     // Create a payment intent using Stripe
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: total, // Stripe expects amount in cents
+      amount: total,
       currency: "usd",
     });
 
@@ -48,5 +53,5 @@ app.post("/payment/create", async (req, res) => {
   }
 });
 
-// Export API function for Firebase
-exports.api = onRequest(app);
+// Export for Vercel
+module.exports = app;
