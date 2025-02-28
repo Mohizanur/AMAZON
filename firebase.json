@@ -1,4 +1,10 @@
 {
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
   "functions": [
     {
       "source": "functions",
@@ -15,7 +21,12 @@
   "headers": [
     {
       "source": "**",
-      "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
     }
   ]
 }
