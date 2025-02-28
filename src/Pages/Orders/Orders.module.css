@@ -1,0 +1,72 @@
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background-color: #ffffff;
+  color: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.orders_container {
+  padding: 15px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: #f0f0f0;
+  margin: 15px 0;
+}
+
+p {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.orders_container > div {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.orders_container > div > div {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #f5f5f5;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.orders_container > div > div:hover {
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.orders_container div[style] {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  opacity: 0.8;
+}
+
+.orders_container img {
+  max-width: 100px;
+  height: auto;
+  border-radius: 4px;
+}
